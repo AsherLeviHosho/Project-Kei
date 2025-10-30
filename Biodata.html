@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Diri</title> 
+    <style>
+
+        @font-face {
+            font-family: 'TaroBoba';
+            src: url('TaroBoba-Regular.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'TooFreakinCute';
+            src: url('Too Freakin Cute Demo.ttf') format('truetype');
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: auto;
+            font-family: 'TaroBoba', sans-serif;
+        }
+
+        /* === BACKGROUND VIDEO === */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        /* === CONTAINER === */
+        .container {
+            background-color: rgba(255, 255, 255, 0.3); 
+            padding: 30px;
+            margin-top: 60px;
+            border-radius: 12px;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+        }
+
+        .biodata-box {
+            text-align: center; 
+        }
+
+        /* === PHOTO === */
+        .photo {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            box-shadow: 10px 10px 5px black;
+            background-color: rgb(233, 218, 178);
+        }
+
+        /* === TEXT === */
+        p {
+            font-size: 20px;
+            margin: 8px 0;
+            color: rgb(0, 0, 0);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        /* === TITLES === */
+        h1.custom-heading {
+            font-family: 'TooFreakinCute', cursive;
+            color: rgb(231, 24, 128); 
+            font-size: 3em;
+        }
+
+        h2.custom-subheading {
+            font-family: 'TooFreakinCute', cursive;
+            font-size: 2em;
+            color: rgb(0, 0, 0);
+            margin-bottom: 20px;
+        }
+
+        /* === FOOTER TEXT === */
+        .footer-text {
+            color: rgb(248, 206, 232);
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === BACKGROUND VIDEO === -->
+    <video autoplay muted loop id="background-video">
+        <source src="Flower.mp4" type="video/mp4">
+    </video>
+
+    <!-- === MAIN CONTENT === -->
+    <center>
+        <div class="container">
+            <h2 class="custom-subheading">Selamat datang di Web pertama saya</h2>
+            <div class="biodata-box">
+                <h1 class="custom-heading">BIODATA DIRI</h1>
+                <img src="Kei.jpg" alt="Foto Diri" class="photo" style="width: 510px; height: 285px;"> 
+                
+                <p><strong>Nama :</strong> Kei Tedjo</p>
+                <p><strong>Tempat Lahir :</strong> Jakarta Utara</p>
+                <p><strong>Tanggal Lahir :</strong> 25 Februari 2009</p>
+                <p><strong>Alamat :</strong> Jl Sunter Permai Jaya I Blok A9 no 2B, Jakarta Utara</p>
+                <p><strong>Email :</strong> i.am.levi.20092025@gmail.com</p>
+                <p><strong>Hobi :</strong> Main Game, Akting, Es Skating, Design, Belajar Bahasa</p>
+                <p><strong>Makanan Kesukaan :</strong> Macaroni, Kangkung</p>
+                <p><strong>Moto Hidup :</strong> "Bermimpi besar, bertindak berani."</p>
+                <p><strong>IG Account :</strong> @JustYourKei</p>
+            </div>
+        </div>
+    </center> 
+
+    <!-- === FOOTER === -->
+    <p style="color: rgb(255, 143, 212); font-family:'TaroBoba'; font-size:20px;">Hi, It's Kei ^^</p>
+
+</body>
+</html>

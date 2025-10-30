@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartu Fakta Menarik — Ubur-Ubur 🪼</title>
+  <style>
+    @font-face {
+      font-family: "Milky Boba";
+      src: url("Milky Boba.ttf") format("truetype");
+    }
+
+    * {
+      font-family: "Milky Boba", "TaroBoba-Regular.otf";
+    }
+
+    body {
+      background: url("water.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .card-fakta {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .card-fakta:hover {
+      transform: translateY(-5px);
+    }
+
+    .media-container {
+      width: 100%;
+      height: 160px; 
+      overflow: hidden;
+    }
+
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+      display: block;
+    }
+
+    .content {
+      padding: 15px;
+    }
+
+    h2 {
+      margin: 5px 0;
+      font-size: 1.5em;
+      color: #7fd9ff;
+      text-shadow: 0 0 10px rgba(127, 217, 255, 0.5);
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #c0e8ff;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
+
+    .facts-list {
+      list-style: disc;
+      text-align: left;
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.9em;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+
+    .facts-list li {
+      margin-bottom: 6px;
+    }
+
+    .btn-next {
+      margin-top: 10px;
+      padding: 8px 18px;
+      background: #7fd9ff;
+      color: #00324d;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.95em;
+      transition: background 0.3s ease;
+    }
+
+    .btn-next:hover {
+      background: #b9ecff;
+    }
+
+    .card-footer {
+      margin-top: 10px;
+      font-size: 0.75em;
+      color: #aad8ff;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Scrollbar styling (optional aesthetic) */
+    .facts-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .facts-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-fakta">
+    <div class="media-container">
+      <img id="factMedia" src="Blue.jpg" alt="Media ubur-ubur" />
+    </div>
+    <div class="content">
+      <h2>Fakta Menarik tentang Ubur-Ubur</h2>
+      <p class="subtitle">Tahukah kamu fakta-fakta unik ini?</p>
+
+      <ul class="facts-list" id="factList">
+        <li>Ubur-ubur bukan ikan dan tidak memiliki otak atau jantung.</li>
+        <li>Sudah hidup lebih dari 500 juta tahun, bahkan sebelum dinosaurus.</li>
+        <li>entakel ubur-ubur memiliki sel penyengat yang disebut knidosit yang melepaskan racun untuk melumpuhkan mangsa atau untuk melindungi diri. </li>
+        <li>Beberapa jenis ubur-ubur bisa bersinar di laut gelap.</li>
+      </ul>
+
+      <button class="btn-next" id="nextFact">🔁 Fakta Selanjutnya</button>
+
+      <div class="card-footer">© 2025 | Fakta Biologi Laut 🌊</div>
+    </div>
+  </div>
+
+  <script>
+    const factData = [
+      {
+        image: "Grr.jpg",
+        facts: [
+          "Meskipun disebut jellyfish, ubur-ubur bukan ikan.",
+          "Mereka tidak punya tulang, otak, atau jantung — termasuk hewan invertebrata.",
+          "Ubur-ubur sudah hidup sejak lebih dari 500 juta tahun lalu.",
+          "Beberapa jenis bisa bersinar di laut karena bioluminesensi."
+        ]
+      },
+      {
+        image: "Jelly.mp4",
+        facts: [
+          "Tubuh ubur-ubur terdiri dari 95% air.",
+          "Ubur-ubur hidup di hampir semua lautan di dunia.",
+          "Ada jenis ubur-ubur yang bisa hidup di air tawar.",
+          "Mereka bergerak dengan mendorong air menggunakan tubuhnya yang seperti payung."
+        ]
+      },
+      {
+        image: "Cute.mp4",
+        facts: [
+          "Tentakel ubur-ubur memiliki sel penyengat bernama nematosista.",
+          "Sengatan ubur-ubur bisa melumpuhkan mangsa atau menyebabkan iritasi pada manusia.",
+          "Mereka memakan plankton, ikan kecil, dan udang kecil.",
+          "Ubur-ubur menangkap mangsa menggunakan tentakel beracun."
+        ]
+      },
+      {
+        image: "Fish.mp4",
+        facts: [
+          "Spesies Turritopsis dohrnii dijuluki ubur-ubur abadi.",
+          "Ia bisa kembali ke tahap muda setelah dewasa.",
+          "Ubur-ubur memiliki dua bentuk hidup: polip dan medusa.",
+          "Perubahan suhu dan pencemaran laut dapat mengganggu populasinya."
+        ]
+      }
+    ];
+
+    const factList = document.getElementById("factList");
+    const mediaContainer = document.querySelector(".media-container");
+    const nextBtn = document.getElementById("nextFact");
+
+    nextBtn.addEventListener("click", () => {
+      factList.classList.add("fade-out");
+
+      setTimeout(() => {
+        const randomFact = factData[Math.floor(Math.random() * factData.length)];
+        const mediaUrl = randomFact.image;
+        mediaContainer.innerHTML = "";
+
+        if (mediaUrl.endsWith(".mp4")) {
+          const video = document.createElement("video");
+          video.src = mediaUrl;
+          video.autoplay = true;
+          video.loop = true;
+          video.muted = true;
+          video.style.opacity = 0;
+          video.onloadeddata = () => (video.style.opacity = 1);
+          mediaContainer.appendChild(video);
+        } else {
+          const img = document.createElement("img");
+          img.src = mediaUrl;
+          img.alt = "Media ubur-ubur";
+          img.style.opacity = 0;
+          img.onload = () => (img.style.opacity = 1);
+          mediaContainer.appendChild(img);
+        }
+
+        factList.innerHTML = randomFact.facts.map(f => `<li>${f}</li>`).join("");
+        factList.classList.remove("fade-out");
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

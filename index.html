@@ -1,234 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
   <title>Portofolio Siswa - Kei Tedjo</title>
+
   <style>
-    /* === FONT IMPORT === */
+    /* === IMPORT FONTS === */
     @font-face {
       font-family: 'TaroBoba';
       src: url('TaroBoba-Regular.otf') format('opentype');
     }
-
     @font-face {
       font-family: 'TooFreakinCute';
       src: url('Too Freakin Cute Demo.ttf') format('truetype');
     }
 
-
+    /* === PAGE STYLE === */
     body {
-      background-color: #e0f2f1;
-      padding: 40px;
-      text-align: center;
+      background: #ffeaf6;
+      margin: 0;
+      padding: 45px 0;
       font-family: 'TaroBoba', sans-serif;
-      font-size: 22px; /* bigger body text */
-      line-height: 1.8;
+      text-align: center;
     }
 
     .container {
+      width: 90%;
       max-width: 900px;
       margin: auto;
       background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 18px rgba(0,0,0,0.1);
-    }
-
-
-    h1, h3 {
-      font-family: 'TooFreakinCute', cursive;
-      color: #000000;
-      margin-bottom: 20px;
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0px 0px 30px rgba(255, 177, 220, 0.45);
     }
 
     h1 {
-      font-size: 2.8em;
+      font-family: 'TooFreakinCute', cursive;
+      font-size: 3.2em;
+      color: #ff66ad;
+      margin-bottom: 10px;
     }
-
-    h3 {
-      font-size: 2em;
-    }
-
 
     .intro {
-      font-size: 1.6em; 
+      font-size: 1.4em;
+      color: #444;
       margin-bottom: 30px;
-      color: #333;
     }
 
-    /* === SEARCH BOX === */
-    .search-box {
-      margin-bottom: 25px;
-    }
-
-    input[type="text"] {
+    /* === SEARCH BAR === */
+    .search-box input {
+      width: 85%;
       padding: 14px;
-      width: 75%;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      font-family: 'TaroBoba', sans-serif;
+      border-radius: 14px;
+      border: 2px solid #ffb8db;
+      outline: none;
       font-size: 20px;
+      font-family: 'TaroBoba', sans-serif;
+      background: #fff7fc;
+      transition: 0.3s;
+    }
+    .search-box input:focus {
+      border-color: #ff7db5;
+      box-shadow: 0 0 10px rgba(255, 141, 205, 0.6);
     }
 
     /* === PROJECT CARD === */
     .project {
-      margin: 35px 0;
+      background: #fff0fa;
+      border-left: 8px solid #ff8aca;
       padding: 28px;
-      background: #f9f9f9;
-      border-left: 6px solid #cb66d8;
+      margin: 35px 0;
+      border-radius: 18px;
       text-align: left;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      font-family: 'TaroBoba', sans-serif;
-      font-size: 21px;
+      transition: 0.3s;
+    }
+    .project:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(255, 162, 232, 0.35);
+    }
+    .project h3 {
+      font-family: 'TooFreakinCute', cursive;
+      font-size: 2em;
+      color: #d9279f;
+      margin-bottom: 12px;
     }
 
+    /* === IMAGES SAME SIZE BANNER === */
     .project img {
-      max-width: 100%;
-      border-radius: 10px;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
       margin: 15px 0;
     }
 
     /* === BUTTONS === */
     .btn, .toggle-btn {
       display: inline-block;
-      margin-top: 14px;
-      padding: 12px 22px;
-      background-color: #e24f88;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'TaroBoba', sans-serif;
       font-size: 18px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
       cursor: pointer;
-      font-family: 'TaroBoba', sans-serif;
+      transition: 0.3s;
+      margin-right: 8px;
     }
 
-    .btn:hover, .toggle-btn:hover {
-      background-color: #00897b;
-      transform: scale(1.05);
+    .btn {
+      background: #ff77c3;
+      color: white;
+    }
+    .btn:hover {
+      background: #ff4da9;
     }
 
-    p {
-      margin: 12px 0;
-      font-family: 'TaroBoba', sans-serif;
-      font-size: 21px;
+    .toggle-btn {
+      background: #ffd3ef;
+      color: #b80083;
+    }
+    .toggle-btn:hover {
+      background: #ffc4e8;
     }
   </style>
 </head>
+
 <body>
+
   <div class="container">
     <h1>Portofolio Siswa - Kei Tedjo</h1>
-    <p class="intro">Berikut daftar proyek yang telah saya kerjakan:</p>
+    <p class="intro">Berikut daftar proyek yang telah saya kerjakan 💗</p>
 
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="Cari proyek... (misal: kartu, formulir)">
     </div>
 
-    <div id="projectsContainer">
-      <!-- Semua project akan dimuat di sini -->
-    </div>
+    <div id="projectsContainer"></div>
   </div>
 
   <script>
-    // Data proyek dalam bentuk array
     const projects = [
-      {
-        title: "1. Website Biodata Diri", 
-        img: "white.jpg",
-        desc: "Menampilkan informasi pribadi seperti nama, hobi, dan cita-cita dengan HTML & CSS dasar.",
-        link: "Biodata.html"
-      },
-      {
-        title: "2. Website Kartu Informasi",
-        img: "https://via.placeholder.com/800x300?text=Kartu+Informasi",
-        desc: "Desain kartu nama atau kartu identitas menggunakan HTML dan CSS dengan layout menarik.",
-        link: "#"
-      },
-      {
-        title: "3. Website Resep Makanan",
-        img: "https://via.placeholder.com/800x300?text=Resep+Makanan",
-        desc: "Berisi resep masakan favorit dengan daftar bahan, langkah-langkah, dan gambar hidangan.",
-        link: "#"
-      },
-      {
-        title: "4. Website Kartu Undangan",
-        img: "https://via.placeholder.com/800x300?text=Kartu+Undangan",
-        desc: "Membuat undangan digital seperti ulang tahun, pernikahan, atau acara sekolah.",
-        link: "#"
-      },
-      {
-        title: "5. Website Formulir",
-        img: "https://via.placeholder.com/800x300?text=Formulir+Online",
-        desc: "Formulir pendaftaran online dengan elemen input, radio, checkbox, dan tombol kirim.",
-        link: "#"
-      },
-      {
-        title: "6. Website Jadwal Pelajaran",
-        img: "https://via.placeholder.com/800x300?text=Jadwal+Pelajaran",
-        desc: "Tabel interaktif berisi jadwal pelajaran mingguan dengan tampilan rapi dan warna-warna menarik.",
-        link: "#"
-      },
-      {
-        title: "7. Website Project Akhir",
-        img: "https://via.placeholder.com/800x300?text=Project+Akhir",
-        desc: "Gabungan seluruh materi HTML & CSS dalam satu proyek kreatif sebagai ujian praktik akhir semester.",
-        link: "#"
-      },
-      {
-        title: "8. Website Ujian Praktek",
-        img: "https://via.placeholder.com/800x300?text=Ujian+Praktek",
-        desc: "Website hasil ujian praktek informatika sebagai penilaian akhir dari pembelajaran HTML dan CSS.",
-        link: "#"
-      }
+      { title: "Website Biodata Diri", img: "white.jpg", desc: "Menampilkan informasi pribadi dengan HTML & CSS dasar.", link: "Biodata.html" },
+      { title: "Website Kartu Informasi", img: "pink.jpg", desc: "Kartu identitas digital dengan tampilan rapi dan manis.", link: "kartuinformasi.html" },
+      { title: "Website Resep Makanan", img: "https://via.placeholder.com/800x300?text=Resep+Makanan", desc: "Berisi resep masakan favorit lengkap.", link: "#" },
+      { title: "Website Kartu Undangan", img: "https://via.placeholder.com/800x300?text=Kartu+Undangan", desc: "Undangan digital cantik untuk acara spesial.", link: "#" },
+      { title: "Website Formulir Online", img: "https://via.placeholder.com/800x300?text=Formulir+Online", desc: "Formulir pendaftaran online lengkap.", link: "#" },
+      { title: "Website Jadwal Pelajaran", img: "https://via.placeholder.com/800x300?text=Jadwal+Pelajaran", desc: "Tabel jadwal pelajaran mingguan.", link: "#" },
+      { title: "Website Project Akhir", img: "https://via.placeholder.com/800x300?text=Project+Akhir", desc: "Proyek gabungan seluruh materi HTML & CSS.", link: "#" },
+      { title: "Website Ujian Praktek", img: "https://via.placeholder.com/800x300?text=Ujian+Praktek", desc: "Website hasil ujian praktik informatika.", link: "#" }
     ];
 
-    const container = document.getElementById('projectsContainer');
-
-    function renderProjects(filteredProjects = projects) {
-      container.innerHTML = "";
-      filteredProjects.forEach((project) => {
-        const div = document.createElement('div');
-        div.className = 'project';
-        div.innerHTML = `
-          <h3>${project.title}</h3>
-          <img src="${project.img}" alt="${project.title}">
-          <p>${project.desc}</p>
-          <a href="${project.link}" class="btn" target="_blank">Lihat Proyek</a>
+    function renderProjects(list = projects) {
+      const container = document.getElementById("projectsContainer");
+      container.innerHTML = list.map(p => `
+        <div class="project">
+          <h3>${p.title}</h3>
+          <img src="${p.img}" alt="${p.title}">
+          <p>${p.desc}</p>
+          <a href="${p.link}" target="_blank"><button class="btn">Lihat Proyek</button></a>
           <button class="toggle-btn" onclick="toggleProject(this)">Sembunyikan</button>
-        `;
-        container.appendChild(div);
-      });
+        </div>
+      `).join("");
     }
-
-    // Tampilkan semua project saat pertama kali
     renderProjects();
 
-    // Fungsi untuk toggle tampil/sembunyi
     function toggleProject(btn) {
-      const projectDiv = btn.closest('.project');
-      const desc = projectDiv.querySelector('p');
-      const img = projectDiv.querySelector('img');
-
-      if (desc.style.display === 'none') {
-        desc.style.display = 'block';
-        img.style.display = 'block';
-        btn.textContent = 'Sembunyikan';
-      } else {
-        desc.style.display = 'none';
-        img.style.display = 'none';
-        btn.textContent = 'Tampilkan';
-      }
+      const card = btn.closest(".project");
+      const img = card.querySelector("img");
+      const p = card.querySelector("p");
+      const hide = img.style.display !== "none";
+      img.style.display = hide ? "none" : "block";
+      p.style.display = hide ? "none" : "block";
+      btn.textContent = hide ? "Tampilkan" : "Sembunyikan";
     }
 
-    // Pencarian proyek berdasarkan input
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const keyword = this.value.toLowerCase();
-      const filtered = projects.filter(p =>
-        p.title.toLowerCase().includes(keyword) ||
-        p.desc.toLowerCase().includes(keyword)
-      );
-      renderProjects(filtered);
+    document.getElementById("searchInput").addEventListener("input", e => {
+      const key = e.target.value.toLowerCase();
+      renderProjects(projects.filter(p =>
+        p.title.toLowerCase().includes(key) || p.desc.toLowerCase().includes(key)
+      ));
     });
   </script>
+
 </body>
 </html>
+
